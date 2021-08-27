@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "PhoniexAntMedia"
-  spec.version      = "0.1.0"
+  spec.version      = "0.1.1"
   spec.summary      = "It's merging two pods into single"
   spec.description  = "This is about to merge two framework AntMedia and Phoniex into single one"
   spec.homepage     = "https://github.com/JayeshMardiya/PhoniexAntMedia"
@@ -34,6 +34,7 @@ Pod::Spec.new do |spec|
   spec.dependency 'Swinject', '2.7.1'
   
   spec.dependency 'RxReachability'
+  spec.dependency 'SwiftPhoenixClient', '~> 1.3.0'
   
   spec.pod_target_xcconfig = {
     'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'

@@ -16,7 +16,6 @@ target 'PhoniexAntMediaFramework' do
   pod "GoogleWebRTC", '1.1.31999'
   
   pod 'Swinject', '2.7.1'
-  pod 'SwinjectStoryboard'
   
   pod 'RxReachability'
 
