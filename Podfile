@@ -8,16 +8,14 @@ target 'PhoniexAntMediaFramework' do
   pod 'Starscream', '~> 3.1.0'
   pod 'CocoaAsyncSocket', '~> 7.6.5'
   
-  pod 'RxCocoa', '~> 5.1.3'
-  pod 'RxOptional'
-  pod 'RxSwiftExt'
+  pod 'RxCocoa', '~> 6.2.0'
+  pod 'RxOptional', '~> 5.0.2'
+  pod 'RxSwiftExt', '~> 6.0.1'
   
-  pod 'SwiftPhoenixClient', '1.3.0'
-  pod "GoogleWebRTC", '1.1.31999'
-  
-  pod 'Swinject', '2.7.1'
-  
-  pod 'RxReachability'
+  pod 'SwiftPhoenixClient', '~> 2.1.1'
+  pod 'GoogleWebRTC', '~> 1.1.31999'
+    
+  pod 'RxReachability', '~> 1.2.1'
 
 end
 

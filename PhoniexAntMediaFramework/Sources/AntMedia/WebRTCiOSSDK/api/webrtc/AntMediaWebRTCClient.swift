@@ -92,7 +92,8 @@ class AntMediaWebRTCClient: NSObject {
 //                self.addLocalMediaStream()
             }
             
-            self.addLocalMediaStream()
+            let addedStream = self.addLocalMediaStream()
+            print(addedStream)
         }
         
         if enableDataChannel && self.mode == .publish {

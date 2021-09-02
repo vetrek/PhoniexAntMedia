@@ -10,7 +10,6 @@ import Foundation
 import CocoaAsyncSocket
 import WebRTC
 import RxSwift
-import Swinject
 import Reachability
 
 protocol RTCListenerDelegate {
@@ -130,14 +129,5 @@ extension RTCListenerImpl: NetServiceDelegate {
         } catch {
             return
         }
-    }
-}
-
-class RTCListenerAssembly: Assembly {
-
-    func assemble(container: Container) {
-        container.register(RTCListener.self) { _ in
-            return RTCListenerImpl()
-        }.inObjectScope(.container)
     }
 }

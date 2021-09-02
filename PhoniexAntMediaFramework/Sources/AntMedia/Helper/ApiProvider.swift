@@ -82,23 +82,21 @@ private extension ApiProvider {
                 
                 if let error = sessionError as NSError? {
                     if (error.domain == NSURLErrorDomain) && (error.code == NSURLErrorCancelled) {
-                        
-                        single(.error(GenericError("API connection was cancelled")))
+                        single(.failure(GenericError("API connection was cancelled")))
                         return
                     }
                     
                     if (error.domain == NSURLErrorDomain) && (error.code == NSURLErrorNotConnectedToInternet) {
-                        
-                        single(.error(GenericError("Network connection error")))
+                        single(.failure(GenericError("Network connection error")))
                         return
                     }
                     
-                    single(.error(GenericError("Unknown error")))
+                    single(.failure(GenericError("Unknown error")))
                     return
                 }
                 
                 guard let response = urlResponse as? HTTPURLResponse else {
-                    single(.error(GenericError("Invalid response")))
+                    single(.failure(GenericError("Invalid response")))
                     return
                 }
                 
@@ -108,10 +106,10 @@ private extension ApiProvider {
                     if let d = rawData {
                         single(.success(d))
                     } else {
-                        single(.error(GenericError("Invalid response")))
+                        single(.failure(GenericError("Invalid response")))
                     }
                 default:
-                    single(.error(GenericError("Request failure")))
+                    single(.failure(GenericError("Request failure")))
                 }
                 
             }.resume()

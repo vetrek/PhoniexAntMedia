@@ -10,7 +10,6 @@ import Foundation
 import CocoaAsyncSocket
 import WebRTC
 import RxSwift
-import Swinject
 import Reachability
 import RxReachability
 
@@ -144,14 +143,5 @@ extension NetServerBrowserImpl: ConnectDelegate {
     
     func webRTCClient(_ client: ClientBase, didSaveFile file: String, ofType type: String, toPath path: String) {
         
-    }
-}
-
-class NetServerBrowserAssembly: Assembly {
-
-    func assemble(container: Container) {
-        container.register(NetServerBrowser.self) { _ in
-            return NetServerBrowserImpl()
-        }.inObjectScope(.container)
     }
 }

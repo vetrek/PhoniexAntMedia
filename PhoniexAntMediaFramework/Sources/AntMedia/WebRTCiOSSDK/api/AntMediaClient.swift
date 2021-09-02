@@ -217,7 +217,7 @@ open class AntMediaClient: NSObject, AntMediaClientProtocol {
     open func connectWebSocket() {
         AntMediaClient.printf("Connect websocket to \(self.getWsUrl())")
         if (!(self.webSocket?.isConnected ?? false)) { //provides backward compatibility
-            AntMediaClient.printf("Will connect to: \(self.getWsUrl()) for stream: \(self.streamId)")
+            AntMediaClient.printf("Will connect to: \(self.getWsUrl()) for stream: \(String(describing: self.streamId))")
             
             webSocket = WebSocket(request: self.getRequest())
             webSocket?.delegate = self
@@ -579,7 +579,7 @@ extension AntMediaClient: WebSocketDelegate {
     public func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         
         pingTimer?.invalidate()
-        AntMediaClient.printf("WebSocketDelegate -> Disconnected connected: \(socket.isConnected) \(self.webSocket?.isConnected)")
+        AntMediaClient.printf("WebSocketDelegate -> Disconnected connected: \(socket.isConnected) \(String(describing: self.webSocket?.isConnected))")
         
         if let e = error as? WSError {
             self.delegate?.clientDidDisconnect(e.message)

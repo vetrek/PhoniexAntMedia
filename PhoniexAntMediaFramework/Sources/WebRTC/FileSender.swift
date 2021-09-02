@@ -9,7 +9,7 @@
 import Foundation
 import WebRTC
 
-protocol FileSenderDelegate : class {
+protocol FileSenderDelegate : AnyObject {
     func fileSender(_ fileSender: FileSender, didStartUploadingFile file: String)
     func fileSender(_ fileSender: FileSender, uploadProgress progress: Float, forFile file: String)
     func fileSender(_ fileSender: FileSender, didCompleteUploadingFile file: String)

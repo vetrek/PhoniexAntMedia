@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol FileReaderDelegate : class {
+protocol FileReaderDelegate: AnyObject {
     func fileReader(_ fileReader: FileReader, didSaveFile file: String, ofType type: String, toPath path: String)
     func fileReader(_ fileReader: FileReader, didFailToSaveFile file: String, withError error: String)
 }

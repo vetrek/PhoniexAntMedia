@@ -86,8 +86,8 @@ open class ConferenceClient: ConferenceClientProtocol, WebSocketDelegate {
                     .map { $0.totalWebRTCWatchersCount }
                     .asObservable()
             }
-            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .default))
-            .observeOn(MainScheduler.instance)
+            .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .default))
+            .observe(on: MainScheduler.instance)
             .subscribe(
                 onNext: { count in
                     self.delegate.currentListenerCount(count)

@@ -11,7 +11,7 @@ import WebRTC
 import CocoaAsyncSocket
 import RxSwift
 
-protocol WebRTCClientDelegate: class {
+protocol WebRTCClientDelegate: AnyObject {
     func webRTCClient(_ client: WebRTCClient, didDiscoverLocalCandidate candidate: RTCIceCandidate, clientId: String?)
     func webRTCClient(_ client: WebRTCClient, didChangeConnectionState state: RTCIceConnectionState, clientId: String?)
     func webRTCClient(_ client: WebRTCClient, didReceiveData data: Data, clientId: String?)
@@ -138,7 +138,7 @@ final class WebRTCClient: NSObject {
         
         NotificationCenter.default.rx
             .notification(UIDevice.proximityStateDidChangeNotification)
-            .observeOn(MainScheduler.instance)
+            .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] (_) in
                 
                 let proximityState = UIDevice.current.proximityState
