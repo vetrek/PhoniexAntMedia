@@ -9,10 +9,6 @@
 import Foundation
 import RxSwift
 
-protocol AntMediaApiService {
-    func getListenerCount(request: BroadcastStatsRequest) -> Single<BroadcastStatsResponse>
-}
-
 private enum EndPoint : String {
     case broadcast_stats = "http://%@/rest/v2/broadcasts/%@/broadcast-statistics"
     
@@ -34,9 +30,11 @@ private enum EndPoint : String {
 }
 
 
-class AntMediaApiServiceImpl : AntMediaApiService {
+class AntMediaApiService {
     
     let apiProvider = ApiProvider()
+    
+    init() {}
     
     func getListenerCount(request: BroadcastStatsRequest) -> Single<BroadcastStatsResponse> {
         let url = EndPoint.broadcast_stats.urlAtServer(request.serverAddress, withStreamId: request.streamId)

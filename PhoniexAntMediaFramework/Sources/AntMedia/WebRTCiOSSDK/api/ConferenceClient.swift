@@ -59,7 +59,7 @@ open class ConferenceClient: ConferenceClientProtocol, WebSocketDelegate {
     private let delegate: ConferenceClientDelegate
     var roomInfoGetterTimer: Timer?
     var userType: UserType?
-    private let apiService = AntMediaApiServiceImpl()
+    private let apiService = AntMediaApiService()
     private let disposeBag = DisposeBag()
     
     public init(serverURL: String, conferenceClientDelegate: ConferenceClientDelegate, userType: UserType) {
