@@ -10,7 +10,7 @@ import UIKit
 import WebRTC
 import CocoaAsyncSocket
 
-class ClientListener: ClientBase {
+public class ClientListener: ClientBase {
 
     private lazy var localAudioTrack: RTCAudioTrack = {
         let audioConstrains = RTCMediaConstraints(mandatoryConstraints: nil, optionalConstraints: nil)

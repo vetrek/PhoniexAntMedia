@@ -511,7 +511,7 @@ open class AntMediaClient: NSObject, AntMediaClientProtocol {
         self.webRTCClient?.getStats(handler: completionHandler)
     }
     
-    func sendFile(message: PresenterMessage) {
+    public func sendFile(message: PresenterMessage) {
         
         if let dictionaryToSend = try? message.asDictionary(), self.isDataChannelActive() {
             

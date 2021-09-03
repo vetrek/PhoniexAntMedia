@@ -10,24 +10,24 @@ import Foundation
 import CocoaAsyncSocket
 import WebRTC
 
-protocol NetServiceServerDelegate {
+public protocol NetServiceServerDelegate {
     func setListenerCount(count: Int)
     func setServerName(name: String)
     func setMessageData(message: MessageData)
 }
 
-class NetServiceServer: NSObject {
+public class NetServiceServer: NSObject {
     
     private var netService: NetService!
     private var asyncSocketServer: GCDAsyncSocket!
-    var clientListener: ClientListener?
-    var connectedClients: [ClientListener] = []
+    public var clientListener: ClientListener?
+    public var connectedClients: [ClientListener] = []
     private var tcpPort: UInt16!
-    var delegate: NetServiceServerDelegate?
+    public var delegate: NetServiceServerDelegate?
     private var serviceName: String = ""
     private var sessionData: SessionData? = nil
     
-    init(with sessionData: SessionData) {
+    public init(with sessionData: SessionData) {
         self.serviceName = sessionData.streamName ?? ""
         self.sessionData = sessionData
         super.init()
@@ -64,7 +64,7 @@ class NetServiceServer: NSObject {
         }
     }
     
-    func stopServer() {
+    public func stopServer() {
         
         self.clientListener?.peerConnection.close()
         self.connectedClients.removeAll()
@@ -116,7 +116,7 @@ extension NetServiceServer: ConnectDelegate {
 
 extension NetServiceServer: GCDAsyncSocketDelegate {
     
-    func socket(_ sock: GCDAsyncSocket, didAcceptNewSocket newSocket: GCDAsyncSocket) {
+    public func socket(_ sock: GCDAsyncSocket, didAcceptNewSocket newSocket: GCDAsyncSocket) {
         
         // Send session setup to client
         guard
@@ -163,16 +163,16 @@ extension NetServiceServer: GCDAsyncSocketDelegate {
 
 extension NetServiceServer: NetServiceDelegate {
     
-    func netServiceDidPublish(_ sender: NetService) {
+    public func netServiceDidPublish(_ sender: NetService) {
 //        Log.debug(message: "NetService did publish: \(sender.name)", event: .info)
         self.delegate?.setServerName(name: sender.name)
     }
     
-    func netService(_ sender: NetService, didNotPublish errorDict: [String : NSNumber]) {
+    public func netService(_ sender: NetService, didNotPublish errorDict: [String : NSNumber]) {
 //        Log.debug(message: "NetService did not publish", event: .info)
     }
     
-    func netServiceDidStop(_ sender: NetService) {
+    public func netServiceDidStop(_ sender: NetService) {
 //        Log.debug(message: "NetService did stop", event: .info)
     }
 }

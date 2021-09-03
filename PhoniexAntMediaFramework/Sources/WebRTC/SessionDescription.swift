@@ -10,10 +10,10 @@ import Foundation
 import WebRTC
 
 /// This enum is a swift wrapper over `RTCSdpType` for easy encode and decode
-enum SdpType: String, Codable {
+public enum SdpType: String, Codable {
     case offer, prAnswer, answer
     
-    var rtcSdpType: RTCSdpType {
+    public var rtcSdpType: RTCSdpType {
         switch self {
         case .offer:    return .offer
         case .answer:   return .answer

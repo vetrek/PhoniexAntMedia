@@ -12,57 +12,47 @@ import WebRTC
 import RxSwift
 import Reachability
 
-protocol RTCListenerDelegate {
+public protocol RTCListenerDelegate {
     func showPasswordView(password: String, completion: @escaping (Bool) -> ())
     func showConnectionStatus(isConnected: Bool)
     func showErrorMessage(message: String)
     func webRTCClient(_ client: ClientBase, didSaveFile file: String, ofType type: String, toPath path: String)
 }
 
-protocol RTCListener {
+public class RTCListener: NSObject {
     
-    var rtcListenerDelegate: RTCListenerDelegate? { get set }
-    func connectToServer(server: NetService)
-    func disConnectFromServer()
-    func sendMessage(message: MessageData)
-    func setVolume(volume: Double)
-    func muteEnable(isMute: Bool)
-}
-
-class RTCListenerImpl: NSObject, RTCListener {
-    
-    var rtcListenerDelegate: RTCListenerDelegate?
+    public var rtcListenerDelegate: RTCListenerDelegate?
     private var serverAddresses: [Data] = []
     var clientPresenter: ClientPresenter!
     
-    override init() {
+    public override init() {
         super.init()
     }
     
-    func connectToServer(server: NetService) {
+    public func connectToServer(server: NetService) {
         
         server.delegate = self
         server.resolve(withTimeout: 5.0)
     }
     
-    func disConnectFromServer() {
+    public func disConnectFromServer() {
         if self.clientPresenter != nil {
             self.clientPresenter.disconnect()
         }
     }
     
-    func sendMessage(message: MessageData) {
+    public func sendMessage(message: MessageData) {
         
         self.clientPresenter.sendTextMessage(message: message)
     }
     
-    func setVolume(volume: Double) {
+    public func setVolume(volume: Double) {
         if clientPresenter != nil {
             self.clientPresenter.setVolume(volume: volume)
         }
     }
     
-    func muteEnable(isMute: Bool) {
+    public func muteEnable(isMute: Bool) {
         if clientPresenter != nil {
             if isMute {
                 self.clientPresenter.muteAudio(isRemote: false)
@@ -73,7 +63,7 @@ class RTCListenerImpl: NSObject, RTCListener {
     }
 }
 
-extension RTCListenerImpl: ConnectDelegate {
+extension RTCListener: ConnectDelegate {
     
     func didShowErrorMessage(message: String) {
         self.rtcListenerDelegate?.showErrorMessage(message: message)
@@ -111,9 +101,9 @@ extension RTCListenerImpl: ConnectDelegate {
     }
 }
 
-extension RTCListenerImpl: NetServiceDelegate {
+extension RTCListener: NetServiceDelegate {
     
-    func netServiceDidResolveAddress(_ sender: NetService) {
+    public func netServiceDidResolveAddress(_ sender: NetService) {
         guard let addresses = sender.addresses
             else { return }
         

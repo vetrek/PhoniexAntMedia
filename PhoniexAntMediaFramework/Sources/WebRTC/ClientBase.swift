@@ -12,7 +12,7 @@ import CocoaAsyncSocket
 import RxSwift
 import RxCocoa
 
-class ClientBase: NSObject {
+public class ClientBase: NSObject {
     
     let CHUNK_SIZE = 64000
     var fileReader: FileReader!
@@ -207,7 +207,7 @@ extension ClientBase {
         }
     }
     
-    func sendFile(_ data: Data, filename: String, filesize: Int) -> Bool {
+    public func sendFile(_ data: Data, filename: String, filesize: Int) -> Bool {
         
         guard
             let dataChannel = self.remoteDataChannel,
@@ -242,7 +242,7 @@ extension ClientBase {
         fileReader.readFile(buffer: byteBuffer)
     }
     
-    func muteAudio(isRemote: Bool) {
+    public func muteAudio(isRemote: Bool) {
         if isRemote {
             self.setAudioEnabled(false)
         } else {
@@ -250,7 +250,7 @@ extension ClientBase {
         }
     }
     
-    func unmuteAudio(isRemote: Bool) {
+    public func unmuteAudio(isRemote: Bool) {
         if isRemote {
             self.setAudioEnabled(true)
         } else {
@@ -427,7 +427,7 @@ private extension ClientBase {
 // MARK: - GCDAsyncSocketDelegate Delegeates
 extension ClientBase: GCDAsyncSocketDelegate {
     
-    func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
+    public func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
         
         guard let text = String(data: data, encoding: .utf8) else { return }
         do {
@@ -494,7 +494,7 @@ extension ClientBase: GCDAsyncSocketDelegate {
 // MARK: - PeerConnection Delegeates
 extension ClientBase: RTCPeerConnectionDelegate {
     
-    func peerConnection(_ peerConnection: RTCPeerConnection, didChange stateChanged: RTCSignalingState) {
+    public func peerConnection(_ peerConnection: RTCPeerConnection, didChange stateChanged: RTCSignalingState) {
         
         var state = ""
         if stateChanged == .stable {
@@ -508,7 +508,7 @@ extension ClientBase: RTCPeerConnectionDelegate {
         print("signaling state changed: ", state)
     }
     
-    func peerConnection(_ peerConnection: RTCPeerConnection, didChange newState: RTCIceConnectionState) {
+    public func peerConnection(_ peerConnection: RTCPeerConnection, didChange newState: RTCIceConnectionState) {
         
         switch newState {
         case .connected, .completed:
@@ -526,7 +526,7 @@ extension ClientBase: RTCPeerConnectionDelegate {
         }
     }
     
-    func peerConnection(_ peerConnection: RTCPeerConnection, didAdd stream: RTCMediaStream) {
+    public func peerConnection(_ peerConnection: RTCPeerConnection, didAdd stream: RTCMediaStream) {
         print("did add stream")
         self.remoteStream = stream
         
@@ -536,28 +536,28 @@ extension ClientBase: RTCPeerConnectionDelegate {
         }
     }
     
-    func peerConnection(_ peerConnection: RTCPeerConnection, didGenerate candidate: RTCIceCandidate) {
+    public func peerConnection(_ peerConnection: RTCPeerConnection, didGenerate candidate: RTCIceCandidate) {
         self.sendCandidate(candidate)
     }
     
-    func peerConnection(_ peerConnection: RTCPeerConnection, didRemove stream: RTCMediaStream) {
+    public func peerConnection(_ peerConnection: RTCPeerConnection, didRemove stream: RTCMediaStream) {
         print("--- did remove stream ---")
     }
     
-    func peerConnection(_ peerConnection: RTCPeerConnection, didOpen dataChannel: RTCDataChannel) {
+    public func peerConnection(_ peerConnection: RTCPeerConnection, didOpen dataChannel: RTCDataChannel) {
         self.remoteDataChannel = dataChannel
     }
     
-    func peerConnection(_ peerConnection: RTCPeerConnection, didRemove candidates: [RTCIceCandidate]) {}
+    public func peerConnection(_ peerConnection: RTCPeerConnection, didRemove candidates: [RTCIceCandidate]) {}
     
-    func peerConnectionShouldNegotiate(_ peerConnection: RTCPeerConnection) {}
+    public func peerConnectionShouldNegotiate(_ peerConnection: RTCPeerConnection) {}
     
-    func peerConnection(_ peerConnection: RTCPeerConnection, didChange newState: RTCIceGatheringState) {}
+    public func peerConnection(_ peerConnection: RTCPeerConnection, didChange newState: RTCIceGatheringState) {}
 }
 
 extension ClientBase: RTCDataChannelDelegate {
     
-    func dataChannel(_ dataChannel: RTCDataChannel, didReceiveMessageWith buffer: RTCDataBuffer) {
+    public func dataChannel(_ dataChannel: RTCDataChannel, didReceiveMessageWith buffer: RTCDataBuffer) {
         DispatchQueue.main.async {
             if buffer.isBinary {
                 if self.userType == "listener" {
@@ -582,7 +582,7 @@ extension ClientBase: RTCDataChannelDelegate {
         }
     }
     
-    func dataChannelDidChangeState(_ dataChannel: RTCDataChannel) {
+    public func dataChannelDidChangeState(_ dataChannel: RTCDataChannel) {
         print("data channel did change state")
     }
 }

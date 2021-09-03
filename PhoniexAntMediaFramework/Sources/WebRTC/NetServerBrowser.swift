@@ -24,17 +24,9 @@ protocol ConnectDelegate {
     func webRTCClient(_ client: ClientBase, didSaveFile file: String, ofType type: String, toPath path: String)
 }
 
-protocol NetServerBrowser {
+open class NetServerBrowser: NSObject {
     
-    func startBrowser()
-    func refreshBrowser()
-    func serverListStream() -> Observable<[NetService]>
-    func checkWifi(connection: Reachability.Connection)
-}
-
-class NetServerBrowserImpl: NSObject, NetServerBrowser {
-    
-    private let serverListPublisher = PublishSubject<[NetService]>()
+    public let serverListPublisher = PublishSubject<[NetService]>()
     private var netServiceBrowser: NetServiceBrowser!
 
     private var serverList: [NetService] = []
@@ -42,9 +34,13 @@ class NetServerBrowserImpl: NSObject, NetServerBrowser {
     private var wifiStatus: Bool = false
     private let disposeBag = DisposeBag()
     
-    override init() {
+    public override init() {
         super.init()
-
+        self.initialize()
+    }
+    
+    public func initialize() {
+        
         Reachability.rx
             .status
             .subscribe(onNext: { status in
@@ -60,13 +56,13 @@ class NetServerBrowserImpl: NSObject, NetServerBrowser {
         self.netServiceBrowser.searchForServices(ofType: "_populi._tcp.", inDomain: "")
     }
     
-    func refreshBrowser() {
+    public func refreshBrowser() {
         self.netServiceBrowser.stop()
         self.serverList.removeAll()
         self.netServiceBrowser.searchForServices(ofType: "_populi._tcp.", inDomain: "")
     }
     
-    func serverListStream() -> Observable<[NetService]> {
+    public func serverListStream() -> Observable<[NetService]> {
         return self.serverListPublisher
             .do(onSubscribed: {
                 self.startBrowser()
@@ -83,15 +79,15 @@ class NetServerBrowserImpl: NSObject, NetServerBrowser {
 }
 
 // MARK: - NetServiceBrowserDelegate
-extension NetServerBrowserImpl: NetServiceBrowserDelegate {
+extension NetServerBrowser: NetServiceBrowserDelegate {
     
-    func netServiceBrowser(_ browser: NetServiceBrowser, didFind service: NetService, moreComing: Bool) {
+    public func netServiceBrowser(_ browser: NetServiceBrowser, didFind service: NetService, moreComing: Bool) {
 //        Log.debug(message: "Browser did find Service: \(service.name)", event: .info)
         self.serverList.append(service)
         self.serverListPublisher.onNext(self.serverList)
     }
     
-    func netServiceBrowser(_ browser: NetServiceBrowser, didRemove service: NetService, moreComing: Bool) {
+    public func netServiceBrowser(_ browser: NetServiceBrowser, didRemove service: NetService, moreComing: Bool) {
         
 //        Log.debug(message: "Browser did remove Service: \(service.name)", event: .info)
         if let index = self.serverList.firstIndex(of: service) {
@@ -100,14 +96,14 @@ extension NetServerBrowserImpl: NetServiceBrowserDelegate {
         }
     }
     
-    func netServiceBrowser(_ browser: NetServiceBrowser, didNotSearch errorDict: [String : NSNumber]) {
+    public func netServiceBrowser(_ browser: NetServiceBrowser, didNotSearch errorDict: [String : NSNumber]) {
         
         self.serverList.removeAll()
         self.serverListPublisher.onNext(self.serverList)
     }
 }
 
-extension NetServerBrowserImpl: ConnectDelegate {
+extension NetServerBrowser: ConnectDelegate {
     
     func didShowErrorMessage(message: String) {
         

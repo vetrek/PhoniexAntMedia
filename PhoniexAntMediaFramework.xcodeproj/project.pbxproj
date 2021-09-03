@@ -27,7 +27,6 @@
 		1A29B05A26D668540087D1C1 /* SwiftyUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A29B02926D668540087D1C1 /* SwiftyUserDefaults.swift */; };
 		1A29B05B26D668540087D1C1 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A29B02A26D668540087D1C1 /* Run.swift */; };
 		1A29B05C26D668540087D1C1 /* ClientPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A29B02C26D668540087D1C1 /* ClientPresenter.swift */; };
-		1A29B05D26D668540087D1C1 /* ImageViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A29B02D26D668540087D1C1 /* ImageViewController.storyboard */; };
 		1A29B05E26D668540087D1C1 /* NetServiceServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A29B02E26D668540087D1C1 /* NetServiceServer.swift */; };
 		1A29B05F26D668540087D1C1 /* NetServerBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A29B02F26D668540087D1C1 /* NetServerBrowser.swift */; };
 		1A29B06026D668540087D1C1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A29B03026D668540087D1C1 /* Message.swift */; };
@@ -89,7 +88,6 @@
 		1A29B02926D668540087D1C1 /* SwiftyUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyUserDefaults.swift; sourceTree = "<group>"; };
 		1A29B02A26D668540087D1C1 /* Run.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
 		1A29B02C26D668540087D1C1 /* ClientPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientPresenter.swift; sourceTree = "<group>"; };
-		1A29B02D26D668540087D1C1 /* ImageViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ImageViewController.storyboard; sourceTree = "<group>"; };
 		1A29B02E26D668540087D1C1 /* NetServiceServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetServiceServer.swift; sourceTree = "<group>"; };
 		1A29B02F26D668540087D1C1 /* NetServerBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetServerBrowser.swift; sourceTree = "<group>"; };
 		1A29B03026D668540087D1C1 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -255,15 +253,15 @@
 		1A29B02B26D668540087D1C1 /* WebRTC */ = {
 			isa = PBXGroup;
 			children = (
+				1A29B03F26D668540087D1C1 /* Remote */,
+				1A29B03426D668540087D1C1 /* Local */,
 				1A29B02C26D668540087D1C1 /* ClientPresenter.swift */,
-				1A29B02D26D668540087D1C1 /* ImageViewController.storyboard */,
 				1A29B02E26D668540087D1C1 /* NetServiceServer.swift */,
 				1A29B02F26D668540087D1C1 /* NetServerBrowser.swift */,
 				1A29B03026D668540087D1C1 /* Message.swift */,
 				1A29B03126D668540087D1C1 /* SessionDescription.swift */,
 				1A29B03226D668540087D1C1 /* ByteBuffer.swift */,
 				1A29B03326D668540087D1C1 /* Config.swift */,
-				1A29B03426D668540087D1C1 /* Local */,
 				1A29B03626D668540087D1C1 /* FileSender.swift */,
 				1A29B03726D668540087D1C1 /* FileManagerProxy.swift */,
 				1A29B03826D668540087D1C1 /* ClientListener.swift */,
@@ -273,7 +271,6 @@
 				1A29B03C26D668540087D1C1 /* ErrorMessage.swift */,
 				1A29B03D26D668540087D1C1 /* FileReader.swift */,
 				1A29B03E26D668540087D1C1 /* ClientBase.swift */,
-				1A29B03F26D668540087D1C1 /* Remote */,
 			);
 			path = WebRTC;
 			sourceTree = "<group>";
@@ -439,7 +436,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A29B05D26D668540087D1C1 /* ImageViewController.storyboard in Resources */,
 				1A3521DD26D7B18800B0B564 /* Localizable.strings in Resources */,
 				1A3521CB26D7AE6200B0B564 /* PhoniexAntMedia.podspec in Resources */,
 			);
@@ -685,6 +681,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = PhoniexAntMediaFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -711,6 +708,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = PhoniexAntMediaFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
