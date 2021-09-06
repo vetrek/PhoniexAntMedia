@@ -435,6 +435,8 @@ extension WebRTCClient: RTCDataChannelDelegate {
 class TimeoutHandler {
     
     class func setTimeout(enabled: Bool) {
-        UIApplication.shared.isIdleTimerDisabled = enabled
+        DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
+            UIApplication.shared.isIdleTimerDisabled = enabled
+        }
     }
 }
