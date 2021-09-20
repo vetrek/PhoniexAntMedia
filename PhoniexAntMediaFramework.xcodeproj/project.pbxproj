@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0400DC02D31DF34A8AA373F7 /* Pods_PhoniexAntMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 024A66F47208F959E6C46F76 /* Pods_PhoniexAntMediaFramework.framework */; };
+		1A18800426F8A897002EA046 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A18800326F8A897002EA046 /* Run.swift */; };
 		1A29B00A26D666150087D1C1 /* PhoniexAntMediaFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A29B00826D666150087D1C1 /* PhoniexAntMediaFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A29B04B26D668540087D1C1 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A29B01626D668540087D1C1 /* UIApplication.swift */; };
 		1A29B04C26D668540087D1C1 /* WebRTCiOSSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A29B01826D668540087D1C1 /* WebRTCiOSSDK.h */; };
@@ -63,6 +64,7 @@
 
 /* Begin PBXFileReference section */
 		024A66F47208F959E6C46F76 /* Pods_PhoniexAntMediaFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhoniexAntMediaFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A18800326F8A897002EA046 /* Run.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
 		1A29B00526D666150087D1C1 /* PhoniexAntMediaFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PhoniexAntMediaFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A29B00826D666150087D1C1 /* PhoniexAntMediaFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhoniexAntMediaFramework.h; sourceTree = "<group>"; };
 		1A29B00926D666150087D1C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 				1A29B03C26D668540087D1C1 /* ErrorMessage.swift */,
 				1A29B03D26D668540087D1C1 /* FileReader.swift */,
 				1A29B03E26D668540087D1C1 /* ClientBase.swift */,
+				1A18800326F8A897002EA046 /* Run.swift */,
 			);
 			path = WebRTC;
 			sourceTree = "<group>";
@@ -486,6 +489,7 @@
 				1A3521EB26D7B2F500B0B564 /* Array+Extensions.swift in Sources */,
 				1A29B07126D668540087D1C1 /* User.swift in Sources */,
 				1A3521E326D7B22A00B0B564 /* ApiProvider.swift in Sources */,
+				1A18800426F8A897002EA046 /* Run.swift in Sources */,
 				1A29B05126D668540087D1C1 /* AntMediaClientDelegate.swift in Sources */,
 				1A29B07226D668540087D1C1 /* IceCandidate.swift in Sources */,
 				1A29B07626D668540087D1C1 /* StarscreamProvider.swift in Sources */,
