@@ -115,8 +115,6 @@ open class ConferenceClient: ConferenceClientProtocol, WebSocketDelegate {
     
     public func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         
-//        AntMediaClient.printf("Received message \(text)")
-        
         if let message = text.toJSON() {
             guard let command = message[COMMAND] as? String else {
                 return
@@ -131,9 +129,6 @@ open class ConferenceClient: ConferenceClientProtocol, WebSocketDelegate {
                 if definition == JOINED_ROOM_DEFINITION {
                     if let streamId = message[STREAM_ID] as? String {
                         self.streamId = streamId
-//                        if self.userType == .presenter {
-//                            self.delegate.streamIdToPublish(streamId: streamId);
-//                        }
                         
                         self.delegate.streamIdToPublish(streamId: streamId);
                     }

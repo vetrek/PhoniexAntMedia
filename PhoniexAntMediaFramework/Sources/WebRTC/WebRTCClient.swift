@@ -220,7 +220,7 @@ public class WebRTCClient: NSObject {
         
         guard
             let dataChannel = self.remoteDataChannel
-            else { return }
+        else { return }
         
         if let dictionaryToSend = try? message.asDictionary() {
             
@@ -267,13 +267,12 @@ public class WebRTCClient: NSObject {
 }
 
 extension WebRTCClient : FileReaderDelegate {
+    
     func fileReader(_ fileReader: FileReader, didSaveFile file: String, ofType type: String, toPath path: String) {
         self.delegate?.webRTCClient(self, didSaveFile: file, ofType: type, toPath: path)
     }
     
-    func fileReader(_ fileReader: FileReader, didFailToSaveFile file: String, withError error: String) {
-        
-    }
+    func fileReader(_ fileReader: FileReader, didFailToSaveFile file: String, withError error: String) {}
 }
 
 extension WebRTCClient: RTCPeerConnectionDelegate {

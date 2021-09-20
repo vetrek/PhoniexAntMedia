@@ -15,14 +15,14 @@ struct UserInfo: Codable {
 
 // Enum for UserType
 public enum UserType: String {
-
+    
     case listener
     case presenter
     case interpreter
 }
 
 extension UserType: Codable {
-
+    
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: Key.self)
         let rawValue = try container.decode(Int.self, forKey: .rawValue)
@@ -37,7 +37,7 @@ extension UserType: Codable {
             throw CodingError.unknownValue
         }
     }
-
+    
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: Key.self)
         switch self {
@@ -49,11 +49,11 @@ extension UserType: Codable {
             try container.encode(2, forKey: .rawValue)
         }
     }
-
+    
     enum Key: CodingKey {
         case rawValue
     }
-
+    
     enum CodingError: Error {
         case unknownValue
     }

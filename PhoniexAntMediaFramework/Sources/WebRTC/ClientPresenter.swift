@@ -11,10 +11,8 @@ import WebRTC
 import CocoaAsyncSocket
 
 class ClientPresenter: ClientBase {
-        
+    
     // MARK: Connect
-    override func connect() {
-        
-    }
+    override func connect() {}
 }
 

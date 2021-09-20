@@ -10,13 +10,6 @@ import AVFoundation
 import Starscream
 import WebRTC
 
-let TAG: String = "AntMedia_iOS: "
-
-class Town {
-    var inhabitantNames = [String]()
-    var population : Int { return inhabitantNames.count }
-}
-
 public enum AntMediaClientMode: Int {
     case join = 1
     case play = 2
@@ -59,32 +52,16 @@ open class AntMediaClient: NSObject, AntMediaClientProtocol {
     private var webSocket: WebSocket?
     private var mode: AntMediaClientMode!
     private var webRTCClient: AntMediaWebRTCClient?
-    private var localView: RTCVideoRenderer?
-    private var remoteView: RTCVideoRenderer?
-    
-    private var videoContentMode: UIView.ContentMode?
     
     private let audioQueue = DispatchQueue(label: "audio")
     
     private let rtcAudioSession =  RTCAudioSession.sharedInstance()
-    
-    private var localContainerBounds: CGRect?
-    private var remoteContainerBounds: CGRect?
-    
-    private var cameraPosition: AVCaptureDevice.Position = .front
-    
-    private var targetWidth: Int = 480
-    private var targetHeight: Int = 360
-    
-    private var maxVideoBps: NSNumber = 0;
-    
-    private var videoEnable: Bool = false
+
     private var audioEnable: Bool = true
     
     private var multiPeer: Bool = false
     private var enableDataChannel: Bool = true
     private var multiPeerStreamId: String?
-    private var captureScreenEnabled: Bool = false
     private var userType: UserType = .listener
     
     /*
@@ -95,13 +72,13 @@ open class AntMediaClient: NSObject, AntMediaClientProtocol {
     var pingTimer: Timer?
     
     struct HandshakeMessage:Codable {
-        var command:String?
-        var streamId:String?
-        var token:String?
-        var video:Bool?
-        var audio:Bool?
-        var mode:String?
-        var multiPeer:Bool?
+        var command: String?
+        var streamId: String?
+        var token: String?
+        var video: Bool?
+        var audio: Bool?
+        var mode: String?
+        var multiPeer: Bool?
     }
     
     public override init() {
@@ -115,23 +92,17 @@ open class AntMediaClient: NSObject, AntMediaClientProtocol {
         self.mode = mode
         self.rtcAudioSession.add(self)
         self.enableDataChannel = enableDataChannel
-        self.captureScreenEnabled = captureScreenEnabled
         self.userType = userType
     }
     
-    public func setMaxVideoBps(videoBitratePerSecond: NSNumber) {
-        self.maxVideoBps = videoBitratePerSecond;
-        self.webRTCClient?.setMaxVideoBps(maxVideoBps: videoBitratePerSecond)
-    }
+    public func setMaxVideoBps(videoBitratePerSecond: NSNumber) {}
     
     public func setMultiPeerMode(enable: Bool, mode: String) {
         self.multiPeer = enable
         self.multiPeerMode = mode;
     }
     
-    public func setVideoEnable( enable: Bool) {
-        self.videoEnable = enable
-    }
+    public func setVideoEnable( enable: Bool) {}
     
     public func getStreamId() -> String {
         return self.streamId
@@ -139,7 +110,7 @@ open class AntMediaClient: NSObject, AntMediaClientProtocol {
     
     func getHandshakeMessage() -> String {
         
-        let handShakeMesage = HandshakeMessage(command: self.mode.getName(), streamId: self.streamId, token: self.token.isEmpty ? "" : self.token, video: self.videoEnable, audio:self.audioEnable, multiPeer: self.multiPeer && self.multiPeerStreamId != nil ? true : false)
+        let handShakeMesage = HandshakeMessage(command: self.mode.getName(), streamId: self.streamId, token: self.token.isEmpty ? "" : self.token, video: false, audio:self.audioEnable, multiPeer: self.multiPeer && self.multiPeerStreamId != nil ? true : false)
         let json = try! JSONEncoder().encode(handShakeMesage)
         return String(data: json, encoding: .utf8)!
     }
@@ -228,14 +199,9 @@ open class AntMediaClient: NSObject, AntMediaClientProtocol {
         }
     }
     
-    open func setCameraPosition(position: AVCaptureDevice.Position) {
-        self.cameraPosition = position
-    }
+    open func setCameraPosition(position: AVCaptureDevice.Position) {}
     
-    open func setTargetResolution(width: Int, height: Int) {
-        self.targetWidth = width
-        self.targetHeight = height
-    }
+    open func setTargetResolution(width: Int, height: Int) {}
     
     /*
      Stops everything,
@@ -257,7 +223,7 @@ open class AntMediaClient: NSObject, AntMediaClientProtocol {
         
         if (self.webRTCClient == nil) {
             AntMediaClient.printf("Has wsClient? (start) : \(String(describing: self.webRTCClient))")
-            self.webRTCClient = AntMediaWebRTCClient.init(remoteVideoView: remoteView, localVideoView: localView, delegate: self, mode: self.mode, cameraPosition: self.cameraPosition, targetWidth: self.targetWidth, targetHeight: self.targetHeight, videoEnabled: self.videoEnable, multiPeerActive:  self.multiPeer, enableDataChannel: self.enableDataChannel, captureScreen: self.captureScreenEnabled, userType: self.userType)
+            self.webRTCClient = AntMediaWebRTCClient.init(delegate: self, mode: self.mode, multiPeerActive:  self.multiPeer, enableDataChannel: self.enableDataChannel, userType: self.userType)
             
             self.webRTCClient!.setStreamId(streamId)
             self.webRTCClient!.setToken(self.token)
@@ -269,9 +235,7 @@ open class AntMediaClient: NSObject, AntMediaClientProtocol {
     /*
      Just switches the camera. It works on the fly as well
      */
-    open func switchCamera() {
-        self.webRTCClient?.switchCamera()
-    }
+    open func switchCamera() {}
     
     /*
      Send data through WebRTC Data channel.
@@ -284,54 +248,9 @@ open class AntMediaClient: NSObject, AntMediaClientProtocol {
         return self.webRTCClient?.isDataChannelActive() ?? false
     }
     
-    open func setLocalView( container: UIView, mode:UIView.ContentMode = .scaleAspectFit) {
-        
-        #if arch(arm64)
-        let localRenderer = RTCMTLVideoView(frame: container.frame)
-        localRenderer.videoContentMode =  mode
-        #else
-        let localRenderer = RTCEAGLVideoView(frame: container.frame)
-        localRenderer.delegate = self
-        #endif
-        
-        localRenderer.frame = container.bounds
-        self.localView = localRenderer
-        self.localContainerBounds = container.bounds
-        
-        self.embedView(localRenderer, into: container)
-    }
+    open func setLocalView( container: UIView, mode: UIView.ContentMode = .scaleAspectFit) {}
     
-    open func setRemoteView(remoteContainer: UIView, mode:UIView.ContentMode = .scaleAspectFit) {
-        
-        #if arch(arm64)
-        let remoteRenderer = RTCMTLVideoView(frame: remoteContainer.frame)
-        remoteRenderer.videoContentMode = mode
-        #else
-        let remoteRenderer = RTCEAGLVideoView(frame: remoteContainer.frame)
-        remoteRenderer.delegate = self
-        #endif
-        
-        remoteRenderer.frame = remoteContainer.frame
-        
-        self.remoteView = remoteRenderer
-        self.remoteContainerBounds = remoteContainer.bounds
-        self.embedView(remoteRenderer, into: remoteContainer)
-    }
-    
-    private func embedView(_ view: UIView, into containerView: UIView) {
-        containerView.addSubview(view)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|",
-                                                                    options: [],
-                                                                    metrics: nil,
-                                                                    views: ["view":view]))
-        
-        containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[view]|",
-                                                                    options: [],
-                                                                    metrics: nil,
-                                                                    views: ["view":view]))
-        containerView.layoutIfNeeded()
-    }
+    open func setRemoteView(remoteContainer: UIView, mode: UIView.ContentMode = .scaleAspectFit) {}
     
     open func isConnected() -> Bool {
         return self.webSocket?.isConnected ?? false
@@ -349,9 +268,7 @@ open class AntMediaClient: NSObject, AntMediaClientProtocol {
         self.webRTCClient?.toggleAudioEnabled()
     }
     
-    open func toggleVideo() {
-        self.webRTCClient?.toggleVideoEnabled()
-    }
+    open func toggleVideo() {}
     
     open func getCurrentMode() -> AntMediaClientMode {
         return self.mode
@@ -460,7 +377,6 @@ open class AntMediaClient: NSObject, AntMediaClientProtocol {
                 self.delegate.playFinished(streamId: self.streamId)
             } else if definition == "publish_started" {
                 AntMediaClient.printf("Publish started: Let's go")
-                self.webRTCClient?.setMaxVideoBps(maxVideoBps: self.maxVideoBps)
                 self.delegate.publishStarted(streamId: self.streamId)
             } else if definition == "publish_finished" {
                 AntMediaClient.printf("Play finished: Let's close")
@@ -591,47 +507,15 @@ extension AntMediaClient: WebSocketDelegate {
     }
     
     public func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-//        AntMediaClient.printf("Receive Message: \(text)")
         self.onMessage(text)
     }
     
-    public func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-        //AntMediaClient.printf("Receive Data: " + String(data: data, encoding: .utf8)!)
-    }
+    public func websocketDidReceiveData(socket: WebSocketClient, data: Data) {}
 }
 
 extension AntMediaClient: RTCAudioSessionDelegate {
     
     public func audioSessionDidStartPlayOrRecord(_ session: RTCAudioSession) {
         self.delegate.audioSessionDidStartPlayOrRecord(streamId: self.streamId)
-    }
-}
-
-/*
- This delegate used non arm64 versions. In other words it's used for RTCEAGLVideoView
- */
-extension AntMediaClient: RTCVideoViewDelegate {
-    
-    private func resizeVideoFrame(bounds: CGRect, size: CGSize, videoView: UIView) {
-        
-        let defaultAspectRatio: CGSize = CGSize(width: size.width, height: size.height)
-        let videoFrame: CGRect = AVMakeRect(aspectRatio: defaultAspectRatio, insideRect: bounds)
-        videoView.bounds = videoFrame
-    }
-    
-    public func videoView(_ videoView: RTCVideoRenderer, didChangeVideoSize size: CGSize) {
-        
-        AntMediaClient.printf("Video size changed to " + String(Int(size.width)) + "x" + String(Int(size.height)))
-        
-        var bounds: CGRect?
-        if videoView.isEqual(localView) {
-            bounds = self.localContainerBounds ?? nil
-        } else if videoView.isEqual(remoteView) {
-            bounds = self.remoteContainerBounds ?? nil
-        }
-        
-        if (bounds != nil) {
-            resizeVideoFrame(bounds: bounds!, size: size, videoView: (videoView as? UIView)!)
-        }
     }
 }

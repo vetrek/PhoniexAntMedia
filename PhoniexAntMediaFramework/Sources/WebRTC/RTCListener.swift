@@ -68,7 +68,7 @@ extension RTCListener: ConnectDelegate {
     func didShowErrorMessage(message: String) {
         self.rtcListenerDelegate?.showErrorMessage(message: message)
     }
-
+    
     func webRTCClient(_ client: ClientBase, didSaveFile file: String, ofType type: String, toPath path: String) {
         self.rtcListenerDelegate?.webRTCClient(client, didSaveFile: file, ofType: type, toPath: path)
     }
@@ -80,17 +80,11 @@ extension RTCListener: ConnectDelegate {
         })
     }
     
-    func didIceConnectionStateChanged(iceConnectionState: RTCIceConnectionState) {
-        
-    }
+    func didIceConnectionStateChanged(iceConnectionState: RTCIceConnectionState) {}
     
-    func didReceiveData(data: Data) {
-        
-    }
+    func didReceiveData(data: Data) {}
     
-    func didReceiveMessage(message: MessageData) {
-        
-    }
+    func didReceiveMessage(message: MessageData) {}
     
     func didConnectWebRTC(client: ClientBase) {
         self.rtcListenerDelegate?.showConnectionStatus(isConnected: true)
@@ -105,7 +99,7 @@ extension RTCListener: NetServiceDelegate {
     
     public func netServiceDidResolveAddress(_ sender: NetService) {
         guard let addresses = sender.addresses
-            else { return }
+        else { return }
         
         self.serverAddresses = addresses
         guard let addr = addresses.first else { return }

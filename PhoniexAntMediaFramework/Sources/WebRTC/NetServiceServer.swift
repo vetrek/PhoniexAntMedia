@@ -37,7 +37,6 @@ public class NetServiceServer: NSObject {
     func startServer() {
         
         self.updateListenerCount()
-
         self.asyncSocketServer = GCDAsyncSocket(delegate: self, delegateQueue: DispatchQueue.main)
         
         if let server = self.asyncSocketServer {
@@ -79,13 +78,9 @@ public class NetServiceServer: NSObject {
 
 extension NetServiceServer: ConnectDelegate {
     
-    func didShowErrorMessage(message: String) {
-        
-    }
+    func didShowErrorMessage(message: String) {}
     
-    func didIceConnectionStateChanged(iceConnectionState: RTCIceConnectionState) {
-        
-    }
+    func didIceConnectionStateChanged(iceConnectionState: RTCIceConnectionState) {}
     
     func didReceiveData(data: Data) {
         
@@ -105,13 +100,9 @@ extension NetServiceServer: ConnectDelegate {
         self.updateListenerCount()
     }
     
-    func didSetPassword(password: String, completion: @escaping (Bool) -> ()) {
-        
-    }
+    func didSetPassword(password: String, completion: @escaping (Bool) -> ()) {}
     
-    func webRTCClient(_ client: ClientBase, didSaveFile file: String, ofType type: String, toPath path: String) {
-        
-    }
+    func webRTCClient(_ client: ClientBase, didSaveFile file: String, ofType type: String, toPath path: String) {}
 }
 
 extension NetServiceServer: GCDAsyncSocketDelegate {
@@ -164,15 +155,10 @@ extension NetServiceServer: GCDAsyncSocketDelegate {
 extension NetServiceServer: NetServiceDelegate {
     
     public func netServiceDidPublish(_ sender: NetService) {
-//        Log.debug(message: "NetService did publish: \(sender.name)", event: .info)
         self.delegate?.setServerName(name: sender.name)
     }
     
-    public func netService(_ sender: NetService, didNotPublish errorDict: [String : NSNumber]) {
-//        Log.debug(message: "NetService did not publish", event: .info)
-    }
+    public func netService(_ sender: NetService, didNotPublish errorDict: [String : NSNumber]) {}
     
-    public func netServiceDidStop(_ sender: NetService) {
-//        Log.debug(message: "NetService did stop", event: .info)
-    }
+    public func netServiceDidStop(_ sender: NetService) {}
 }

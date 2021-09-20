@@ -16,16 +16,12 @@
 		1A29B04F26D668540087D1C1 /* AntMediaError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A29B01C26D668540087D1C1 /* AntMediaError.swift */; };
 		1A29B05026D668540087D1C1 /* AntMediaClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A29B01D26D668540087D1C1 /* AntMediaClientProtocol.swift */; };
 		1A29B05126D668540087D1C1 /* AntMediaClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A29B01E26D668540087D1C1 /* AntMediaClientDelegate.swift */; };
-		1A29B05226D668540087D1C1 /* RTCCustomFrameCapturer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A29B02026D668540087D1C1 /* RTCCustomFrameCapturer.swift */; };
 		1A29B05326D668540087D1C1 /* AntMediaWebRTCClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A29B02126D668540087D1C1 /* AntMediaWebRTCClient.swift */; };
 		1A29B05426D668540087D1C1 /* AntMediaConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A29B02226D668540087D1C1 /* AntMediaConfig.swift */; };
 		1A29B05526D668540087D1C1 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A29B02326D668540087D1C1 /* Dictionary.swift */; };
 		1A29B05626D668540087D1C1 /* AntMediaWebRTCClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A29B02426D668540087D1C1 /* AntMediaWebRTCClientDelegate.swift */; };
 		1A29B05726D668540087D1C1 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A29B02526D668540087D1C1 /* String.swift */; };
 		1A29B05826D668540087D1C1 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A29B02726D668540087D1C1 /* AlertHelper.swift */; };
-		1A29B05926D668540087D1C1 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A29B02826D668540087D1C1 /* Defaults.swift */; };
-		1A29B05A26D668540087D1C1 /* SwiftyUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A29B02926D668540087D1C1 /* SwiftyUserDefaults.swift */; };
-		1A29B05B26D668540087D1C1 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A29B02A26D668540087D1C1 /* Run.swift */; };
 		1A29B05C26D668540087D1C1 /* ClientPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A29B02C26D668540087D1C1 /* ClientPresenter.swift */; };
 		1A29B05E26D668540087D1C1 /* NetServiceServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A29B02E26D668540087D1C1 /* NetServiceServer.swift */; };
 		1A29B05F26D668540087D1C1 /* NetServerBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A29B02F26D668540087D1C1 /* NetServerBrowser.swift */; };
@@ -77,16 +73,12 @@
 		1A29B01C26D668540087D1C1 /* AntMediaError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AntMediaError.swift; sourceTree = "<group>"; };
 		1A29B01D26D668540087D1C1 /* AntMediaClientProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AntMediaClientProtocol.swift; sourceTree = "<group>"; };
 		1A29B01E26D668540087D1C1 /* AntMediaClientDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AntMediaClientDelegate.swift; sourceTree = "<group>"; };
-		1A29B02026D668540087D1C1 /* RTCCustomFrameCapturer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTCCustomFrameCapturer.swift; sourceTree = "<group>"; };
 		1A29B02126D668540087D1C1 /* AntMediaWebRTCClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AntMediaWebRTCClient.swift; sourceTree = "<group>"; };
 		1A29B02226D668540087D1C1 /* AntMediaConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AntMediaConfig.swift; sourceTree = "<group>"; };
 		1A29B02326D668540087D1C1 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		1A29B02426D668540087D1C1 /* AntMediaWebRTCClientDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AntMediaWebRTCClientDelegate.swift; sourceTree = "<group>"; };
 		1A29B02526D668540087D1C1 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		1A29B02726D668540087D1C1 /* AlertHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
-		1A29B02826D668540087D1C1 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
-		1A29B02926D668540087D1C1 /* SwiftyUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyUserDefaults.swift; sourceTree = "<group>"; };
-		1A29B02A26D668540087D1C1 /* Run.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
 		1A29B02C26D668540087D1C1 /* ClientPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientPresenter.swift; sourceTree = "<group>"; };
 		1A29B02E26D668540087D1C1 /* NetServiceServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetServiceServer.swift; sourceTree = "<group>"; };
 		1A29B02F26D668540087D1C1 /* NetServerBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetServerBrowser.swift; sourceTree = "<group>"; };
@@ -227,7 +219,6 @@
 		1A29B01F26D668540087D1C1 /* webrtc */ = {
 			isa = PBXGroup;
 			children = (
-				1A29B02026D668540087D1C1 /* RTCCustomFrameCapturer.swift */,
 				1A29B02126D668540087D1C1 /* AntMediaWebRTCClient.swift */,
 				1A29B02226D668540087D1C1 /* AntMediaConfig.swift */,
 				1A29B02326D668540087D1C1 /* Dictionary.swift */,
@@ -243,9 +234,6 @@
 				1A3521E026D7B22A00B0B564 /* AntMediaApiService.swift */,
 				1A3521E126D7B22A00B0B564 /* ApiProvider.swift */,
 				1A29B02726D668540087D1C1 /* AlertHelper.swift */,
-				1A29B02826D668540087D1C1 /* Defaults.swift */,
-				1A29B02926D668540087D1C1 /* SwiftyUserDefaults.swift */,
-				1A29B02A26D668540087D1C1 /* Run.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -478,21 +466,18 @@
 				1A29B06126D668540087D1C1 /* SessionDescription.swift in Sources */,
 				1A29B05826D668540087D1C1 /* AlertHelper.swift in Sources */,
 				1A29B06B26D668540087D1C1 /* ErrorMessage.swift in Sources */,
-				1A29B05926D668540087D1C1 /* Defaults.swift in Sources */,
 				1A29B04D26D668540087D1C1 /* ConferenceClient.swift in Sources */,
 				1A29B07026D668540087D1C1 /* ListenerMessages.swift in Sources */,
 				1A29B06226D668540087D1C1 /* ByteBuffer.swift in Sources */,
 				1A29B05526D668540087D1C1 /* Dictionary.swift in Sources */,
 				1A29B05626D668540087D1C1 /* AntMediaWebRTCClientDelegate.swift in Sources */,
 				1A3521E226D7B22A00B0B564 /* AntMediaApiService.swift in Sources */,
-				1A29B05A26D668540087D1C1 /* SwiftyUserDefaults.swift in Sources */,
 				1A29B05026D668540087D1C1 /* AntMediaClientProtocol.swift in Sources */,
 				1A29B06F26D668540087D1C1 /* RTCStates.swift in Sources */,
 				1A29B04E26D668540087D1C1 /* AntMediaClient.swift in Sources */,
 				1A29B06726D668540087D1C1 /* ClientListener.swift in Sources */,
 				1A29B04B26D668540087D1C1 /* UIApplication.swift in Sources */,
 				1A29B06426D668540087D1C1 /* LocalStramingModel.swift in Sources */,
-				1A29B05B26D668540087D1C1 /* Run.swift in Sources */,
 				1A29B06D26D668540087D1C1 /* ClientBase.swift in Sources */,
 				1A29B07426D668540087D1C1 /* WebSocketProvider.swift in Sources */,
 				1A29B05726D668540087D1C1 /* String.swift in Sources */,
@@ -509,7 +494,6 @@
 				1A29B06526D668540087D1C1 /* FileSender.swift in Sources */,
 				1A29B05F26D668540087D1C1 /* NetServerBrowser.swift in Sources */,
 				1A29B06326D668540087D1C1 /* Config.swift in Sources */,
-				1A29B05226D668540087D1C1 /* RTCCustomFrameCapturer.swift in Sources */,
 				1A3521E826D7B2F500B0B564 /* GenericError.swift in Sources */,
 				1A3521DC26D7B18800B0B564 /* Strings.swift in Sources */,
 				1A3521EA26D7B2F500B0B564 /* Codable+Extensions.swift in Sources */,

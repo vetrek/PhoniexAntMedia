@@ -80,9 +80,7 @@ extension ClientBase: FileReaderDelegate {
         self.delegate?.webRTCClient(self, didSaveFile: file, ofType: type, toPath: path)
     }
     
-    func fileReader(_ fileReader: FileReader, didFailToSaveFile file: String, withError error: String) {
-        
-    }
+    func fileReader(_ fileReader: FileReader, didFailToSaveFile file: String, withError error: String) {}
 }
 
 extension ClientBase {

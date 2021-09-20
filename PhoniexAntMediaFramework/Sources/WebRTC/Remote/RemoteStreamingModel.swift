@@ -57,7 +57,6 @@ public struct RemoteSDP {
     public func encode(to encoder: Encoder) throws {
         
         var container = encoder.container(keyedBy: CodingKeys.self)
-        
         try container.encode(sdp, forKey: .sdp)
         try container.encode(sdpType, forKey: .sdpType)
     }
@@ -65,7 +64,6 @@ public struct RemoteSDP {
     public init(from decoder: Decoder) throws {
         
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        
         sdp = try values.decode(String.self, forKey: .sdp)
         sdpType = try values.decode(SdpType.self, forKey: .sdpType)
     }
@@ -78,11 +76,11 @@ extension RemoteSDP: Codable {
         self.sdp = rtcSDP.sdp
         
         switch rtcSDP.type {
-            case .answer: self.sdpType = .answer
-            case .offer: self.sdpType = .offer
-            case .prAnswer: self.sdpType = .prAnswer
-            @unknown default:
-                fatalError("Invalid RTCSDPType")
+        case .answer: self.sdpType = .answer
+        case .offer: self.sdpType = .offer
+        case .prAnswer: self.sdpType = .prAnswer
+        @unknown default:
+            fatalError("Invalid RTCSDPType")
         }
     }
     
@@ -116,11 +114,11 @@ extension RemoteAnswerSDP {
         self.sdp = rtcSDP.sdp
         
         switch rtcSDP.type {
-            case .answer: self.sdpType = .answer
-            case .offer: self.sdpType = .offer
-            case .prAnswer: self.sdpType = .prAnswer
-            @unknown default:
-                fatalError("Invalid RTCSDPType")
+        case .answer: self.sdpType = .answer
+        case .offer: self.sdpType = .offer
+        case .prAnswer: self.sdpType = .prAnswer
+        @unknown default:
+            fatalError("Invalid RTCSDPType")
         }
     }
     
@@ -199,4 +197,3 @@ public struct RemoteCandidateResponse: Codable {
         )
     }
 }
-

@@ -28,7 +28,7 @@ open class NetServerBrowser: NSObject {
     
     public let serverListPublisher = PublishSubject<[NetService]>()
     private var netServiceBrowser: NetServiceBrowser!
-
+    
     private var serverList: [NetService] = []
     
     private var wifiStatus: Bool = false
@@ -71,7 +71,7 @@ open class NetServerBrowser: NSObject {
     
     func checkWifi(connection: Reachability.Connection) {
         self.wifiStatus = false
-
+        
         if connection == .wifi {
             wifiStatus = true
         }
@@ -82,14 +82,12 @@ open class NetServerBrowser: NSObject {
 extension NetServerBrowser: NetServiceBrowserDelegate {
     
     public func netServiceBrowser(_ browser: NetServiceBrowser, didFind service: NetService, moreComing: Bool) {
-//        Log.debug(message: "Browser did find Service: \(service.name)", event: .info)
         self.serverList.append(service)
         self.serverListPublisher.onNext(self.serverList)
     }
     
     public func netServiceBrowser(_ browser: NetServiceBrowser, didRemove service: NetService, moreComing: Bool) {
         
-//        Log.debug(message: "Browser did remove Service: \(service.name)", event: .info)
         if let index = self.serverList.firstIndex(of: service) {
             self.serverList.remove(at: index)
             self.serverListPublisher.onNext(self.serverList)
@@ -105,39 +103,21 @@ extension NetServerBrowser: NetServiceBrowserDelegate {
 
 extension NetServerBrowser: ConnectDelegate {
     
-    func didShowErrorMessage(message: String) {
-        
-    }
+    func didShowErrorMessage(message: String) {}
     
-    func didSetPassword(password: String, completion: @escaping (Bool) -> ()) {
-        
-    }
+    func didSetPassword(password: String, completion: @escaping (Bool) -> ()) {}
     
-    func didIceConnectionStateChanged(iceConnectionState: RTCIceConnectionState) {
-        
-    }
+    func didIceConnectionStateChanged(iceConnectionState: RTCIceConnectionState) {}
     
-    func didOpenDataChannel() {
-        
-    }
+    func didOpenDataChannel() {}
     
-    func didReceiveData(data: Data) {
-        
-    }
+    func didReceiveData(data: Data) {}
     
-    func didReceiveMessage(message: MessageData) {
-        
-    }
+    func didReceiveMessage(message: MessageData) {}
     
-    func didConnectWebRTC(client: ClientBase) {
-        
-    }
+    func didConnectWebRTC(client: ClientBase) {}
     
-    func didDisconnectWebRTC(client: ClientBase) {
-        
-    }
+    func didDisconnectWebRTC(client: ClientBase) {}
     
-    func webRTCClient(_ client: ClientBase, didSaveFile file: String, ofType type: String, toPath path: String) {
-        
-    }
+    func webRTCClient(_ client: ClientBase, didSaveFile file: String, ofType type: String, toPath path: String) {}
 }

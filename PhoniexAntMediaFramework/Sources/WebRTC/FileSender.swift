@@ -15,7 +15,6 @@ protocol FileSenderDelegate : AnyObject {
     func fileSender(_ fileSender: FileSender, didCompleteUploadingFile file: String)
 }
 
-
 class FileSender {
     
     let CHUNK_SIZE = 64_000
@@ -56,5 +55,3 @@ extension FileSender {
         }
     }
 }
-
-

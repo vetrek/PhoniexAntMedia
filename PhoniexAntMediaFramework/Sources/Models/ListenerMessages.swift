@@ -36,8 +36,8 @@ extension AnswerMessage {
     init(dictionary: Dictionary<String, Any>) throws {
         let to = dictionary["to"] as! String
         let sdp = dictionary["sdp"] as! String
-//        let sdpType = dictionary["sdpType"] as! String
-
+        //        let sdpType = dictionary["sdpType"] as! String
+        
         let answerSDP = RemoteAnswerSDP(sdp: sdp, sdpType: .answer)
         self.init(to: to, sdp: answerSDP, sdpType: .answer)
     }

@@ -21,6 +21,7 @@ struct ErrorStatus: Codable {
 struct ErrorPayload: Codable {
     let errorType: String
 }
+
 struct SpeakerStatus: Codable {
     let status: String
     let uuId: String?

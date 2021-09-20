@@ -15,19 +15,19 @@ class NativeWebSocket: NSObject, WebSocketProvider {
     private let url: URL
     private var socket: URLSessionWebSocketTask?
     private lazy var urlSession: URLSession = URLSession(configuration: .default, delegate: self, delegateQueue: nil)
-
+    
     init(url: URL) {
         self.url = url
         super.init()
     }
-
+    
     func connect() {
         let socket = urlSession.webSocketTask(with: url)
         socket.resume()
         self.socket = socket
         self.readMessage()
     }
-
+    
     func send(data: Data) {
         self.socket?.send(.data(data)) { _ in }
     }
@@ -44,7 +44,7 @@ class NativeWebSocket: NSObject, WebSocketProvider {
             case .success:
                 debugPrint("Warning: Expected to receive data format but received a string. Check the websocket server config.")
                 self.readMessage()
-
+                
             case .failure:
                 self.disconnect()
             }

@@ -11,14 +11,14 @@ import WebRTC
 import CocoaAsyncSocket
 
 public class ClientListener: ClientBase {
-
+    
     private lazy var localAudioTrack: RTCAudioTrack = {
         let audioConstrains = RTCMediaConstraints(mandatoryConstraints: nil, optionalConstraints: nil)
         let audioSource = self.peerConnectionFactory.audioSource(with: audioConstrains)
         let audioTrack = self.peerConnectionFactory.audioTrack(with: audioSource, trackId: "audio0")
         return audioTrack
     }()
-        
+    
     private let password: String?
     private let allowRecording: Bool
     private let currentConnectedClient: Int

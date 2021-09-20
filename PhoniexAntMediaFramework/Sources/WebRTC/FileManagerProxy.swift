@@ -39,4 +39,3 @@ extension FileManagerProxyImpl {
         return destPath.path
     }
 }
-

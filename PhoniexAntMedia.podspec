@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "PhoniexAntMedia"
-  spec.version      = "0.1.5"
+  spec.version      = "0.1.6"
   spec.summary      = "It's merging two pods into single"
   spec.description  = "This is about to merge two framework AntMedia and Phoniex into single one"
   spec.homepage     = "https://github.com/JayeshMardiya/PhoniexAntMedia"

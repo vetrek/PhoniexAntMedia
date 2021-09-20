@@ -11,7 +11,7 @@ import Foundation
 struct ErrorMessage: Codable {
     let type: String
     let error: ErrorPayload?
-
+    
     init(type: String,
          error: ErrorPayload? = nil) {
         
