@@ -377,7 +377,7 @@ private extension ClientBase {
         
         NotificationCenter.default.rx
             .notification(UIDevice.proximityStateDidChangeNotification)
-            .observe(on: MainScheduler.instance)
+            .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] (_) in
                 
                 let proximityState = UIDevice.current.proximityState

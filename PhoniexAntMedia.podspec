@@ -1,13 +1,13 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "PhoniexAntMedia"
-  spec.version      = "0.1.7"
+  spec.version      = "0.1.8"
   spec.summary      = "It's merging two pods into single"
   spec.description  = "This is about to merge two framework AntMedia and Phoniex into single one"
   spec.homepage     = "https://github.com/JayeshMardiya/PhoniexAntMedia"
   spec.license      = "MIT"
   spec.author       = { "Jayesh Mardiya" => "mardiyajayesh@gmail.com" }
-  spec.platform     = :ios, "12.1"
+  spec.platform     = :ios, "12.0"
   spec.source       = { :git => "https://github.com/JayeshMardiya/PhoniexAntMedia.git", :branch => "master" }
   spec.source_files = "PhoniexAntMediaFramework/Sources/**/*.{h,m,swift}"
   spec.resources    = "PhoniexAntMediaFramework/Resources/**/*.*"
