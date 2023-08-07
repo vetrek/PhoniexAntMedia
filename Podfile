@@ -13,7 +13,7 @@ target 'PhoniexAntMediaFramework' do
   pod 'RxSwiftExt', '~> 5.2.0'
   
   pod 'SwiftPhoenixClient', '~> 1.3.0'
-  pod 'GoogleWebRTC', '~> 1.1.31999'
+  pod 'GoogleWebRTC', '~> 1.1.32000'
     
   pod 'RxReachability', '~> 1.0.0'
 
