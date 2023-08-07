@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "PhoniexAntMedia"
-  spec.version      = "0.2.0"
+  spec.version      = "0.3.0"
   spec.summary      = "It's merging two pods into single"
   spec.description  = "This is about to merge two framework AntMedia and Phoniex into single one"
   spec.homepage     = "https://github.com/JayeshMardiya/PhoniexAntMedia"
@@ -28,7 +28,7 @@ Pod::Spec.new do |spec|
   spec.dependency 'RxOptional', '~> 4.1.0'
   spec.dependency 'RxSwiftExt', '~> 5.2.0'
   
-  spec.dependency "GoogleWebRTC", '1.1.31999'
+  spec.dependency "GoogleWebRTC", '1.1.32000'
   
   spec.dependency 'RxReachability', '~> 1.0.0'
   spec.dependency 'SwiftPhoenixClient', '~> 1.3.0'
